@@ -2,10 +2,8 @@ version: "3.9"
 services:
 
   onboarding:
-    container_name: arvp_onboarding
+    container_name: onboarding
     working_dir: /
-    volumes:
-      - /c/onboarding/:/catkin_ws
     build: .
     restart: unless-stopped
     env_file:
