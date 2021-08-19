@@ -11,8 +11,8 @@ RUN sudo sh -c 'echo "export LIBGL_ALWAYS_INDIRECT=0" >> /root/.bashrc'
 
 # Instal pre-reqs
 RUN sudo apt-get update
-RUN sudo apt-get -y install python-pip git cmake ros-melodic-vision-msgs ros-melodic-image-transport ros-melodic-image-publisher
-RUN sudo apt-get -y install gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+RUN sudo apt-get -y install python-pip git cmake ros-melodic-vision-msgs ros-melodic-image-transport ros-melodic-image-publisher apt-utils
+RUN sudo apt-get -y install gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev libglew-dev
 RUN pip install Adafruit-MotorHAT
 RUN pip install Adafruit-SSD1306
 
