@@ -10,7 +10,7 @@ RUN sudo sh -c 'echo "export DISPLAY=host.docker.internal:0.0" >> /root/.bashrc'
 RUN sudo sh -c 'echo "export LIBGL_ALWAYS_INDIRECT=0" >> /root/.bashrc'
 RUN sudo sh -c 'echo "export GAZEBO_IP=127.0.0.1" >> /root/.bashrc'
 
-# Instal pre-reqs
+# Install pre-reqs
 RUN sudo apt-get update
 RUN sudo apt-get -y install python-pip python3-pip git wget curl cmake apt-utils build-essential python3-numpy cython3
 RUN sudo apt-get -y install ros-melodic-vision-msgs ros-melodic-image-transport ros-melodic-image-publisher 
@@ -27,7 +27,6 @@ RUN cd /onboarding_2021/catkin_ws && source /opt/ros/melodic/setup.bash && catki
 RUN sudo sh -c 'echo "source /onboarding_2021/catkin_ws/devel/setup.bash --extend" >> /root/.bashrc'
 
 # Clone and build jetson-utils
-
 RUN cd /onboarding_2021/catkin_ws && git clone https://github.com/dusty-nv/jetson-utils
 RUN cd /onboarding_2021/catkin_ws/jetson-utils && git submodule update --init
 RUN cd /onboarding_2021/catkin_ws/jetson-utils && mkdir build && cd build && cmake -DCUDA_nppicc_LIBRARY=/usr/local/cuda-10.2/targets/aarch64-linux/lib/stubs/libnppicc.so ../ && sudo make install
