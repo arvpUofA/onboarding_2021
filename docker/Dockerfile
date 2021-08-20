@@ -10,12 +10,16 @@ RUN sudo sh -c 'echo "export DISPLAY=host.docker.internal:0.0" >> /root/.bashrc'
 RUN sudo sh -c 'echo "export LIBGL_ALWAYS_INDIRECT=0" >> /root/.bashrc'
 RUN sudo sh -c 'echo "export GAZEBO_IP=127.0.0.1" >> /root/.bashrc'
 
+# Install latest Gazebo 9
+RUN sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+RUN wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+RUN sudo apt-get update && sudo apt-get -y install gazebo9
+
 # Install pre-reqs
 RUN sudo apt-get update
 RUN sudo apt-get -y install python-pip python3-pip git wget curl cmake apt-utils build-essential python3-numpy cython3
 RUN sudo apt-get -y install ros-melodic-vision-msgs ros-melodic-image-transport ros-melodic-image-publisher 
 RUN sudo apt-get -y install ros-melodic-rqt ros-melodic-rqt-common-plugins
-RUN sudo apt-get -y install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control
 RUN sudo apt-get -y install gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev libglew-dev
 RUN pip install Adafruit-MotorHAT
 RUN pip install Adafruit-SSD1306
