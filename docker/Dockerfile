@@ -34,5 +34,5 @@ RUN sudo sh -c 'echo "source /onboarding_2021/catkin_ws/devel/setup.bash --exten
 
 # Instal Jetbot Model
 RUN mkdir -p ~/.gazebo/models
-RUN cd /onboarding_2021/catkin_ws/srs/jetbot_ros/gazebo && chmod install_jetbot_model.sh +x && ./install_jetbot_model.sh
+RUN cd /onboarding_2021/catkin_ws/src/jetbot_ros/gazebo && ./install_jetbot_model.sh
 
