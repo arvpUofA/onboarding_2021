@@ -119,8 +119,8 @@ include_directories(/usr/include/gstreamer-1.0 /usr/include/glib-2.0 /usr/includ
 add_definitions(-DROS1)
 
 # camera node
-add_executable(jetbot_camera src/jetbot_camera.cpp src/image_converter.cpp src/ros_compat.cpp)
-target_link_libraries(jetbot_camera ${catkin_LIBRARIES} jetson-utils)
+add_executable(src/ros_compat.cpp)
+target_link_libraries(${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
