@@ -32,3 +32,7 @@ RUN git clone https://github.com/arvpUofA/onboarding_2021.git
 RUN cd /onboarding_2021/catkin_ws && source /opt/ros/melodic/setup.bash && catkin_make
 RUN sudo sh -c 'echo "source /onboarding_2021/catkin_ws/devel/setup.bash --extend" >> /root/.bashrc'
 
+# Instal Jetbot Model
+RUN mkdir -p ~/.gazebo/models
+RUN cd /onboarding_2021/catkin_ws/srs/jetbot_ros/gazebo && chmod install_jetbot_model.sh +x && ./install_jetbot_model.sh
+
