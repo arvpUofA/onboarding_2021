@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(tasks)
+project(onboarding_task)
 
 find_package(catkin REQUIRED COMPONENTS
         roscpp
