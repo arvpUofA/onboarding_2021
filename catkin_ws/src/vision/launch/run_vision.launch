@@ -1,0 +1,4 @@
+<launch>
+    <!-- My topic launch file -->
+    <node pkg="vision" type="vision_task" name="vision_handler" output="screen"></node>
+</launch>
