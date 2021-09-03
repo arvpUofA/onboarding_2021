@@ -15,7 +15,7 @@ RUN sudo apt-get update
 RUN sudo apt-get -y install ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control
 
 # Install Text Editors
-RUN sudo apt-get -y install gedit vim
+RUN sudo apt-get -y install vim
 
 # Install pre-reqs
 RUN sudo apt-get -y install python3-pip git cmake apt-utils build-essential python3-numpy cython3
