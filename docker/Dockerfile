@@ -14,6 +14,9 @@ RUN sudo sh -c 'echo "export GAZEBO_IP=127.0.0.1" >> /root/.bashrc'
 RUN sudo apt-get update 
 RUN sudo apt-get -y install ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control
 
+# Install Text Editors
+RUN sudo apt-get -y install gedit vim
+
 # Install pre-reqs
 RUN sudo apt-get -y install python3-pip git cmake apt-utils build-essential python3-numpy cython3
 RUN sudo apt-get -y install ros-noetic-vision-msgs ros-noetic-image-transport ros-noetic-image-publisher 
