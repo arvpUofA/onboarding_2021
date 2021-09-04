@@ -5,7 +5,6 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-static const std::string OPENCV_WINDOW = "Image window";
 
 class ImageConverter
 {
@@ -23,12 +22,12 @@ public:
                                    &ImageConverter::imageCb, this);
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
 
-        cv::namedWindow(OPENCV_WINDOW);
+
     }
 
     ~ImageConverter()
     {
-        cv::destroyWindow(OPENCV_WINDOW);
+
     }
 
     void imageCb(const sensor_msgs::ImageConstPtr& msg)
@@ -52,9 +51,6 @@ public:
 
         // YOUR CODE ABOVE
 
-        // Update GUI Window
-        cv::imshow(OPENCV_WINDOW, cv_ptr->image);
-        cv::waitKey(3);
 
         // Output modified video stream
         image_pub_.publish(cv_ptr->toImageMsg());
