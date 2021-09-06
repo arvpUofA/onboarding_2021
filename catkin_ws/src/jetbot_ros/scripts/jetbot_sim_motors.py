@@ -2,27 +2,35 @@
 import rospy
 import time
 import rosservice
+import requests
+import os
 from std_msgs.msg import String
 
 
 # simple string commands (left/right/forward/backward/stop)
 def on_cmd_str(msg):
-	if msg.data.lower() == "left":
+	if msg.data.lower() == "right":
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, duration: 1000000000 }'")
+		time.sleep(5)
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, duration: 1000000000 }'")
+		time.sleep(5)
+		print('done turning right')
 
-		""" 
-		### Need to emulate wait for a second and then apply the reverse and wait a second
-		rosservice call /gazebo/apply_body_wrench '{body_name: "JetBot::left_wheel" , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'
+	elif msg.data.lower() == "left":
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -5, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		print('done turning left')
 
-		then call the following to make it move
-		rostopic pub /jetbot_gazebo_motors/cmd_str std_msgs/String --once "left"
-		"""
-
-		rosservice.call_service("/gazebo/apply_body_wrench", {"body_name": "JetBot::left_wheel" , "wrench": { "force": { "x": 10, "y": 0 , "z": 0 } }, "start_time": 10000000000, "duration": 1000000000 })
-
-	elif msg.data.lower() == "right":
-		pass
 	elif msg.data.lower() == "forward":
-		pass
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		print('done going forward')
 	else:
 		pass
 
