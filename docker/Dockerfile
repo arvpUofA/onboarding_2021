@@ -4,6 +4,8 @@ SHELL ["/bin/bash", "-c"]
 
 # Source ROS
 RUN sudo sh -c 'echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc'
+RUN echo $"alias python='python3'" >> /root/.bashrc
+
 
 # Use External X-Server
 RUN sudo sh -c 'echo "export DISPLAY=host.docker.internal:0.0" >> /root/.bashrc'
