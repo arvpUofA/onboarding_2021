@@ -109,7 +109,7 @@ public:
         midpoint.data = center.x;
         center_point.publish(midpoint);
         
-        // YOUR CODE ABOVE (cool stuff)
+        // YOUR CODE ABOVE
 
 
         // Output modified video stream
