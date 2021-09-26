@@ -42,3 +42,4 @@ echo "linking $GAZEBO_JETBOT_DIR -> $JETBOT_DIR"
 ln -s $JETBOT_DIR $GAZEBO_JETBOT_DIR
 cp -r blue_ball $GAZEBO_MODEL_DIR
 cp -r red_ball $GAZEBO_MODEL_DIR
+cp -r diffdrive $GAZEBO_MODEL_DIR
