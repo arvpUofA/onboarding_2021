@@ -19,7 +19,7 @@ def on_cmd_str(msg):
 	elif msg.data.lower() == "left":
 		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
 		time.sleep(5)
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -5, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
 		time.sleep(5)
 		print('done turning left')
 
@@ -31,6 +31,22 @@ def on_cmd_str(msg):
 		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
 		time.sleep(5)
 		print('done going forward')
+
+	elif msg.data.lower() == "backward":
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
+		time.sleep(5)
+		print('done going backwards')
+
+	elif msg.data.lower() == "stop":
+		os.system("rosservice call /gazebo/clear_body_wrenches '{body_name: 'JetBot::left_wheel' }'")
+		os.system("rosservice call /gazebo/clear_body_wrenches '{body_name: 'JetBot::right_wheel' }'")
+		time.sleep(5)
+		print('done stopping')
+
 	else:
 		pass
 
