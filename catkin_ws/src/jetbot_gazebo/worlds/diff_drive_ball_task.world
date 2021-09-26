@@ -87,6 +87,180 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
+    <model name='soccer_ball'>
+      <static>0</static>
+      <link name='soccer_ball_link'>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.026</mass>
+          <inertia>
+            <ixx>1.664e-05</ixx>
+            <iyy>1.664e-05</iyy>
+            <izz>1.664e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.4</radius>
+            </sphere>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.4 0.4 0.4</scale>
+              <uri>model://blue_ball/meshes/ball.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>2.01848 0.499809 0 0 -0 0</pose>
+    </model>
+    <model name='soccer_ball_0'>
+      <static>0</static>
+      <link name='soccer_ball_link'>
+        <pose>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.026</mass>
+          <inertia>
+            <ixx>1.664e-05</ixx>
+            <iyy>1.664e-05</iyy>
+            <izz>1.664e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.4</radius>
+            </sphere>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.4 0.4 0.4</scale>
+              <uri>model://red_ball/meshes/ball.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>2.03262 -0.384774 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>272 922000000</sim_time>
+      <real_time>60 31952300</real_time>
+      <wall_time>1632652609 764595900</wall_time>
+      <iterations>56843</iterations>
+      <model name='diffdrive'>
+        <pose>-0.066872 0.038634 1e-06 -2e-06 -4e-06 0.012005</pose>
+        <scale>1 1 1</scale>
+        <link name='camera_link'>
+          <pose>0.133113 0.041035 0.200001 0 0.099996 0.012005</pose>
+          <velocity>9.5e-05 -0.000156 0.000145 5e-06 -0.000431 0.000369</velocity>
+          <acceleration>-5.3e-05 -0.407948 0.290429 0.010338 -0.86107 -0.137293</acceleration>
+          <wrench>-5e-06 -0.040795 0.029043 0 -0 0</wrench>
+        </link>
+        <link name='chassis'>
+          <pose>-0.066872 0.038634 0.100001 -2e-06 -4e-06 0.012005</pose>
+          <velocity>0.000137 -6e-05 5.9e-05 0.001755 -0.000423 0.000366</velocity>
+          <acceleration>-0.002412 -0.393301 0.117612 -2.78386 -0.825702 -0.143778</acceleration>
+          <wrench>-0.024116 -3.93301 1.17612 0 -0 0</wrench>
+        </link>
+        <link name='left_wheel'>
+          <pose>0.03156 0.169825 0.100003 1.52394 1.56879 3.10665</pose>
+          <velocity>-3.8e-05 -0.000171 0.000645 0.001747 -0.000323 0.000363</velocity>
+          <acceleration>-0.153076 -0.349566 1.29043 -2.78815 -0.792525 -0.149311</acceleration>
+          <wrench>-0.153076 -0.349566 1.29043 0 -0 0</wrench>
+        </link>
+        <link name='right_wheel'>
+          <pose>0.034681 -0.090155 0.100002 1.51997 1.56895 3.10268</pose>
+          <velocity>0.000269 -0.00016 -0.000321 0.001737 -0.000326 0.000368</velocity>
+          <acceleration>0.233062 -0.329835 -0.641067 -2.80681 -0.785829 -0.138414</acceleration>
+          <wrench>0.233062 -0.329835 -0.641067 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='soccer_ball'>
+        <pose>2.01848 1.79816 0.4 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='soccer_ball_link'>
+          <pose>2.01848 1.79816 0.4 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='soccer_ball_0'>
+        <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='soccer_ball_link'>
+          <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>-2.214 -1.05828 2.28999 -0 0.523643 0.129009</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
     <model name='diffdrive'>
       <static>0</static>
       <link name='chassis'>
@@ -332,6 +506,20 @@
           <always_on>1</always_on>
           <update_rate>10</update_rate>
           <visualize>1</visualize>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>jetbot_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
         </sensor>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
@@ -366,181 +554,7 @@
         <odometryFrame>odom</odometryFrame>
         <robotBaseFrame>base_footprint</robotBaseFrame>
       </plugin>
-      <pose>-0.069492 0.039724 0 0 -0 0</pose>
+      <pose>-0.096618 -0.004914 0 0 -0 0</pose>
     </model>
-    <model name='soccer_ball'>
-      <static>0</static>
-      <link name='soccer_ball_link'>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <mass>0.026</mass>
-          <inertia>
-            <ixx>1.664e-05</ixx>
-            <iyy>1.664e-05</iyy>
-            <izz>1.664e-05</izz>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <sphere>
-              <radius>0.4</radius>
-            </sphere>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <scale>0.4 0.4 0.4</scale>
-              <uri>model://blue_ball/meshes/ball.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>2.01848 0.499809 0 0 -0 0</pose>
-    </model>
-    <model name='soccer_ball_0'>
-      <static>0</static>
-      <link name='soccer_ball_link'>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <mass>0.026</mass>
-          <inertia>
-            <ixx>1.664e-05</ixx>
-            <iyy>1.664e-05</iyy>
-            <izz>1.664e-05</izz>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <sphere>
-              <radius>0.4</radius>
-            </sphere>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <scale>0.4 0.4 0.4</scale>
-              <uri>model://red_ball/meshes/ball.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>2.03262 -0.384774 0 0 -0 0</pose>
-    </model>
-    <state world_name='default'>
-      <sim_time>216 79000000</sim_time>
-      <real_time>90 740920900</real_time>
-      <wall_time>1632642937 465630900</wall_time>
-      <iterations>86904</iterations>
-      <model name='diffdrive'>
-        <pose>0.006526 -0.013124 1e-06 -4e-06 -4e-06 0.082254</pose>
-        <scale>1 1 1</scale>
-        <link name='camera_link'>
-          <pose>0.205849 0.003309 0.200001 0.000373 0.099996 0.082291</pose>
-          <velocity>7.7e-05 0.000258 -0.000145 -3.3e-05 0.000429 0.000506</velocity>
-          <acceleration>-0.02864 0.406949 -0.290431 -0.070752 0.858221 0.137303</acceleration>
-          <wrench>-0.002864 0.040695 -0.029043 0 -0 0</wrench>
-        </link>
-        <link name='chassis'>
-          <pose>0.006525 -0.013124 0.100001 -4e-06 -4e-06 0.082254</pose>
-          <velocity>5.6e-05 -1.4e-05 -5.9e-05 -0.00178 0.000299 0.000509</velocity>
-          <acceleration>-0.025227 0.392501 -0.117614 2.78368 0.456473 0.143792</acceleration>
-          <wrench>-0.252274 3.92501 -1.17614 0 -0 0</wrench>
-        </link>
-        <link name='left_wheel'>
-          <pose>0.095506 0.124652 0.100002 1.5647 1.55582 -3.06553</pose>
-          <velocity>0.000102 0.000186 -0.000645 -0.001777 0.000345 0.000512</velocity>
-          <acceleration>0.12822 0.359089 -1.29042 2.74114 0.545274 0.149311</acceleration>
-          <wrench>0.12822 0.359089 -1.29042 0 -0 0</wrench>
-        </link>
-        <link name='right_wheel'>
-          <pose>0.116868 -0.134467 0.100002 1.56418 1.557 -3.06605</pose>
-          <velocity>2.3e-05 0.000172 0.000321 -0.001767 0.000337 0.000506</velocity>
-          <acceleration>-0.255424 0.313044 0.641075 2.76023 0.539891 0.138377</acceleration>
-          <wrench>-0.255424 0.313044 0.641075 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='ground_plane'>
-        <pose>0 0 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>0 0 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='soccer_ball'>
-        <pose>2.01848 1.79816 0.4 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='soccer_ball_link'>
-          <pose>2.01848 1.79816 0.4 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='soccer_ball_0'>
-        <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='soccer_ball_link'>
-          <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
-      </light>
-    </state>
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose>-2.214 -1.05828 2.28999 -0 0.523643 0.129009</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
   </world>
 </sdf>
