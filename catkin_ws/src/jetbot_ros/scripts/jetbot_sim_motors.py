@@ -28,7 +28,7 @@ def on_cmd_str(msg):
 		twist.linear.z = 0.0
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
-		twost.angular.z = 0.0
+		twist.angular.z = 0.0
 	else:
 		pass
 	pub.publish(twist)
