@@ -45,6 +45,7 @@ public:
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
 
+
         // Draw an example circle on the video stream
         if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
             cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
