@@ -3,7 +3,7 @@ import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
-pub = rospy.Publisher('diffdrive/cmd_vel', Twist)
+pub = rospy.Publisher('diffdrive/cmd_vel', Twist, queue_size=1)
 twist = Twist()
 
 # simple string commands (left/right/forward/backward/stop)
@@ -14,7 +14,7 @@ def on_cmd_str(msg):
 		twist.linear.z = 0.0
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
-		twist.angular.z = 0.05
+		twist.angular.z = -0.05
 	elif msg.data.lower() == "left":
 		twist.linear.x = 0.0
 		twist.linear.y = 0.0
