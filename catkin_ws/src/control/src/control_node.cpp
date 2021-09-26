@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     
     // Declare a subscriber here that subscribes to a std_msgs::Int32 published on "/x_center"
     
-    ros::Rate rate(15);
+    ros::Rate rate(5);
     stopString.data="stop";
 
     while(ros::ok()) {
