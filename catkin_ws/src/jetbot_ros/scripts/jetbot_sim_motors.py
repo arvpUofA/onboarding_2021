@@ -1,25 +1,36 @@
 #!/usr/bin/env python3
 import rospy
-import time
-import rosservice
-import requests
-import os
 from std_msgs.msg import String
-from std_msgs.msg import geometry_msgs/Twist 
+from geometry_msgs.msg import Twist
 
-
-pub = rospy.Publisher('motor_pub', Twist)
+pub = rospy.Publisher('diffdrive/cmd_vel', Twist)
 
 # simple string commands (left/right/forward/backward/stop)
 def on_cmd_str(msg):
 	if msg.data.lower() == "right":
-            pass
+		pub.linear.x = 0.1
+		pub.linear.y = 0.0
+		pub.linear.z = 0.0
+		pub.angular.y = 0.0
+		pub.angular.y = 0.0
+		pub.angular.z = 0.0
 	elif msg.data.lower() == "left":
-            pass
+		pub.linear.x = 0.0
+		pub.linear.y = 0.0
+		pub.linear.z = 0.0
+		pub.angular.y = 0.0
+		pub.angular.y = 0.0
+		pub.angular.z = -0.05
 	elif msg.data.lower() == "forward":
-            pass
+		pub.linear.x = 0.0
+		pub.linear.y = 0.0
+		pub.linear.z = 0.0
+		pub.angular.y = 0.0
+		pub.angular.y = 0.0
+		pub.angular.z = 0.05
 	else:
-	    pass
+		pass
+	pub.publish()
 
 # initialization
 if __name__ == '__main__':
