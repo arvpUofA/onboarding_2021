@@ -44,9 +44,7 @@ public:
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
 
-        // Draw an example circle on the video stream
-        //if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-        //    cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,255,0));
+        // Separate contours
         cv::Mat hsv;
         cv::cvtColor(cv_ptr->image, hsv, CV_BGR2HSV);
 
@@ -56,7 +54,7 @@ public:
         cv::Mat H = channels[0];
 
         cv::Mat shiftedH = H.clone();
-        int shift = 25; // in openCV hue values go from 0 to 180 (so have to be doubled to get to 0 .. 360) because of byte range from 0 to 255
+        int shift = 25;
         for(int j=0; j<shiftedH.rows; ++j)
             for(int i=0; i<shiftedH.cols; ++i)
             {
@@ -66,12 +64,11 @@ public:
         cv::Mat cannyH;
         cv::Canny(shiftedH, cannyH, 100, 50);
 
-        // extract contours of the canny image:
         std::vector<std::vector<cv::Point> > contoursH;
         std::vector<cv::Vec4i> hierarchyH;
         cv::findContours(cannyH, contoursH, hierarchyH, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE);
 
-        // draw the contours to a copy of the input image:
+        // Detect the largest contour:
         int largest_contour_index;
         double largest_area;
         double area;
@@ -83,24 +80,27 @@ public:
                 largest_area = area;
                 largest_contour_index = i;
             }
-            //cv::drawContours( cv_ptr->image, contoursH, i, cv::Scalar(0,0,255), 2, 8, hierarchyH, 0);
         }
-        
-        cv::Rect bounding_rect = cv::boundingRect(contoursH[largest_contour_index]);
-        cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,255,0), 1, 8, 0);
 
-        //std::cout << bounding_rect.x << std::endl;
-        //cv::circle(cv_ptr->image, cv::Point(bounding_rect.x + bounding_rect.width/2, bounding_rect.y + bounding_rect.height/2), 1, CV_RGB(255,255,0));
+        // Needs atleast one contour to draw (avoids crash)
+        if (contoursH.size())  
+        {
+            // Bounding Box
+            cv::Rect bounding_rect = cv::boundingRect(contoursH[largest_contour_index]);
+            cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,255,0), 1, 8, 0);
 
-        int x = bounding_rect.x + bounding_rect.width/2;
-        int y = bounding_rect.y + bounding_rect.height/2;
+            // Centre position of bounding box
+            int x = bounding_rect.x + bounding_rect.width/2;
+        }
+        else
+        {
+            int x = -1; // Contour not found
+        }
 
+        // Publish x-position
         std_msgs::Int32 x_msg;
         x_msg.data = x;
         x_pub_.publish(x_msg);
-        
-        // Point in middle
-        cv::rectangle(cv_ptr->image, cv::Point(x, y), cv::Point(x, y), CV_RGB(0,255,255), 4, 8, 0);
 
         // YOUR CODE ABOVE //
 
