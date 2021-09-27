@@ -106,7 +106,7 @@
         <collision name='collision'>
           <geometry>
             <sphere>
-              <radius>0.1</radius>
+              <radius>0.4</radius>
             </sphere>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -126,7 +126,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <scale>0.1 0.1 0.1</scale>
+              <scale>0.4 0.4 0.4</scale>
               <uri>model://blue_ball/meshes/ball.dae</uri>
             </mesh>
           </geometry>
@@ -135,7 +135,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.683468 -0.321067 0 0 -0 0</pose>
+      <pose>2.01848 0.499809 0 0 -0 0</pose>
     </model>
     <model name='soccer_ball_0'>
       <static>0</static>
@@ -156,7 +156,7 @@
         <collision name='collision'>
           <geometry>
             <sphere>
-              <radius>0.1</radius>
+              <radius>0.4</radius>
             </sphere>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -176,7 +176,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <scale>0.1 0.1 0.1</scale>
+              <scale>0.4 0.4 0.4</scale>
               <uri>model://red_ball/meshes/ball.dae</uri>
             </mesh>
           </geometry>
@@ -185,39 +185,39 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.635168 0.534699 0 0 -0 0</pose>
+      <pose>2.03262 -0.384774 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>72 172000000</sim_time>
-      <real_time>101 72698100</real_time>
-      <wall_time>1632505032 690317400</wall_time>
-      <iterations>25877</iterations>
-      <model name='JetBot'>
-        <pose>-0.011193 -0.002507 -0.000125 -4e-06 -0.003997 4.1e-05</pose>
+      <sim_time>272 922000000</sim_time>
+      <real_time>60 31952300</real_time>
+      <wall_time>1632652609 764595900</wall_time>
+      <iterations>56843</iterations>
+      <model name='diffdrive'>
+        <pose>-0.066872 0.038634 1e-06 -2e-06 -4e-06 0.012005</pose>
         <scale>1 1 1</scale>
         <link name='camera_link'>
-          <pose>0.043464 -0.002505 0.085794 0 0.246003 4.1e-05</pose>
-          <velocity>-2.5e-05 -1.5e-05 -8.4e-05 0 0.000799 0</velocity>
-          <acceleration>0.025853 -0.001302 -0.054789 -2.1e-05 0.51862 -7.3e-05</acceleration>
-          <wrench>0.002585 -0.00013 -0.005479 0 -0 0</wrench>
+          <pose>0.133113 0.041035 0.200001 0 0.099996 0.012005</pose>
+          <velocity>9.5e-05 -0.000156 0.000145 5e-06 -0.000431 0.000369</velocity>
+          <acceleration>-5.3e-05 -0.407948 0.290429 0.010338 -0.86107 -0.137293</acceleration>
+          <wrench>-5e-06 -0.040795 0.029043 0 -0 0</wrench>
         </link>
         <link name='chassis'>
-          <pose>-0.011365 -0.002507 0.042875 1.5668 4e-06 1.57084</pose>
-          <velocity>-5.9e-05 -5e-06 -4.1e-05 0.000228 0.000799 1e-06</velocity>
-          <acceleration>0.003593 -0.000179 -0.026356 0.026448 0.51857 3.2e-05</acceleration>
-          <wrench>0.003593 -0.000179 -0.026356 0 -0 0</wrench>
+          <pose>-0.066872 0.038634 0.100001 -2e-06 -4e-06 0.012005</pose>
+          <velocity>0.000137 -6e-05 5.9e-05 0.001755 -0.000423 0.000366</velocity>
+          <acceleration>-0.002412 -0.393301 0.117612 -2.78386 -0.825702 -0.143778</acceleration>
+          <wrench>-0.024116 -3.93301 1.17612 0 -0 0</wrench>
         </link>
         <link name='left_wheel'>
-          <pose>0.018685 0.048744 0.029994 -0.003996 4e-06 1.57084</pose>
-          <velocity>-7e-05 -2e-06 -6.9e-05 0.000228 0.000799 1e-06</velocity>
-          <acceleration>-0.003091 0.000153 -0.036532 0.026515 0.51857 3.2e-05</acceleration>
-          <wrench>-0.003091 0.000153 -0.036532 0 -0 0</wrench>
+          <pose>0.03156 0.169825 0.100003 1.52394 1.56879 3.10665</pose>
+          <velocity>-3.8e-05 -0.000171 0.000645 0.001747 -0.000323 0.000363</velocity>
+          <acceleration>-0.153076 -0.349566 1.29043 -2.78815 -0.792525 -0.149311</acceleration>
+          <wrench>-0.153076 -0.349566 1.29043 0 -0 0</wrench>
         </link>
         <link name='right_wheel'>
-          <pose>0.01869 -0.062006 0.029995 -0.003983 4e-06 1.57084</pose>
-          <velocity>-6.9e-05 -2e-06 -6.1e-05 0.000228 0.000799 1e-06</velocity>
-          <acceleration>-0.003087 0.000156 -0.047722 0.026402 0.51857 3.2e-05</acceleration>
-          <wrench>-0.003087 0.000156 -0.047722 0 -0 0</wrench>
+          <pose>0.034681 -0.090155 0.100002 1.51997 1.56895 3.10268</pose>
+          <velocity>0.000269 -0.00016 -0.000321 0.001737 -0.000326 0.000368</velocity>
+          <acceleration>0.233062 -0.329835 -0.641067 -2.80681 -0.785829 -0.138414</acceleration>
+          <wrench>0.233062 -0.329835 -0.641067 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -231,20 +231,20 @@
         </link>
       </model>
       <model name='soccer_ball'>
-        <pose>0.6 -0.6 0.1 0 -0 0</pose>
+        <pose>2.01848 1.79816 0.4 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='soccer_ball_link'>
-          <pose>0.6 -0.6 0.1 0 -0 0</pose>
+          <pose>2.01848 1.79816 0.4 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='soccer_ball_0'>
-        <pose>0.6 0.6 0.1 0 -0 0</pose>
+        <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='soccer_ball_link'>
-          <pose>0.6 0.6 0.1 0 -0 0</pose>
+          <pose>2.03262 -1.02002 0.4 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -256,21 +256,61 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>2.42012 0.078176 1.55475 0 0.572 -3.11519</pose>
+        <pose>-2.214 -1.05828 2.28999 -0 0.523643 0.129009</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='JetBot'>
+    <model name='diffdrive'>
       <static>0</static>
       <link name='chassis'>
-        <pose>0 0 0.043 1.5708 -0 1.5708</pose>
+        <pose>0 0 0.1 0 -0 0</pose>
+        <inertial>
+          <mass>10</mass>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <inertia>
+            <ixx>0.5</ixx>
+            <iyy>1</iyy>
+            <izz>0.1</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
         <collision name='collision'>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Chassis.dae</uri>
-            </mesh>
+            <box>
+              <size>0.4 0.2 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.4 0.2 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name='caster_collision'>
+          <pose>-0.15 0 -0.05 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
           </geometry>
           <surface>
             <friction>
@@ -291,39 +331,26 @@
           </surface>
           <max_contacts>10</max_contacts>
         </collision>
-        <visual name='visual'>
+        <visual name='caster_visual'>
+          <pose>-0.15 0 -0.05 0 -0 0</pose>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Chassis.dae</uri>
-            </mesh>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
           </geometry>
         </visual>
         <self_collide>0</self_collide>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-          <mass>1</mass>
-        </inertial>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
-        <mass>10.0</mass>
       </link>
       <link name='left_wheel'>
-        <pose>0.03 0.05125 0.03 0 -0 1.5708</pose>
+        <pose>0.1 0.13 0.1 -0 1.5707 1.5707</pose>
         <collision name='collision'>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-            </mesh>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -341,17 +368,11 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-            </mesh>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
-          <material>
-            <ambient>0.1 0.1 0.1 1</ambient>
-            <diffuse>0.1 0.1 0.1 1</diffuse>
-            <specular>0 0 0 0</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
         </visual>
         <self_collide>0</self_collide>
         <inertial>
@@ -370,13 +391,13 @@
         <kinematic>0</kinematic>
       </link>
       <link name='right_wheel'>
-        <pose>0.03 -0.0595 0.03 0 -0 1.5708</pose>
+        <pose>0.1 -0.13 0.1 -0 1.5707 1.5707</pose>
         <collision name='collision'>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-            </mesh>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -394,17 +415,11 @@
         </collision>
         <visual name='visual'>
           <geometry>
-            <mesh>
-              <scale>0.001 0.001 0.001</scale>
-              <uri>model://jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-            </mesh>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
-          <material>
-            <ambient>0.1 0.1 0.1 1</ambient>
-            <diffuse>0.1 0.1 0.1 1</diffuse>
-            <specular>0 0 0 0</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
         </visual>
         <self_collide>0</self_collide>
         <inertial>
@@ -423,7 +438,7 @@
         <kinematic>0</kinematic>
       </link>
       <joint name='left_wheel_hinge' type='revolute'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 -0.03 0 -0 0</pose>
         <child>left_wheel</child>
         <parent>chassis</parent>
         <axis>
@@ -439,7 +454,7 @@
         </axis>
       </joint>
       <joint name='right_wheel_hinge' type='revolute'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0.03 0 -0 0</pose>
         <child>right_wheel</child>
         <parent>chassis</parent>
         <axis>
@@ -456,7 +471,7 @@
       </joint>
       <link name='camera_link'>
         <gravity>0</gravity>
-        <pose>0.055 0 0.0857 0 0.25 0</pose>
+        <pose>0.2 0 0.2 0 0.1 0</pose>
         <inertial>
           <mass>0.1</mass>
           <pose>0 0 0 0 -0 0</pose>
@@ -485,12 +500,26 @@
             </image>
             <clip>
               <near>0.01</near>
-              <far>1</far>
+              <far>3</far>
             </clip>
           </camera>
           <always_on>1</always_on>
           <update_rate>10</update_rate>
           <visualize>1</visualize>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>jetbot_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
         </sensor>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
@@ -517,15 +546,15 @@
         <updateRate>20</updateRate>
         <leftJoint>left_wheel_hinge</leftJoint>
         <rightJoint>right_wheel_hinge</rightJoint>
-        <wheelSeparation>0.2</wheelSeparation>
+        <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.1</wheelDiameter>
-        <torque>0.1</torque>
+        <torque>20</torque>
         <commandTopic>cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>
         <robotBaseFrame>base_footprint</robotBaseFrame>
       </plugin>
-      <pose>-0.016339 -0.000511 0 0 -0 0</pose>
+      <pose>-0.096618 -0.004914 0 0 -0 0</pose>
     </model>
   </world>
 </sdf>
