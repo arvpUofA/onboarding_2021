@@ -12,6 +12,7 @@ class ImageConverter
     image_transport::ImageTransport it_;
     image_transport::Subscriber image_sub_;
     image_transport::Publisher image_pub_;
+    // Add your bounding box publisher here using the nh_ node handler
 
 public:
     ImageConverter()
