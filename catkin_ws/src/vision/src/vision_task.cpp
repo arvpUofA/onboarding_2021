@@ -82,6 +82,7 @@ public:
             }
         }
 
+        int x;
         // Needs atleast one contour to draw (avoids crash)
         if (contoursH.size())  
         {
@@ -90,11 +91,11 @@ public:
             cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,255,0), 1, 8, 0);
 
             // Centre position of bounding box
-            int x = bounding_rect.x + bounding_rect.width/2;
+            x = bounding_rect.x + bounding_rect.width/2;
         }
         else
         {
-            int x = -1; // Contour not found
+            x = -1; // Contour not found
         }
 
         // Publish x-position
