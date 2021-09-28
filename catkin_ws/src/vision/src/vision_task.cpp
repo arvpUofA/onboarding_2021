@@ -4,7 +4,7 @@
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-
+#include <std_msgs/Int32.h>
 
 class ImageConverter
 {
@@ -12,7 +12,7 @@ class ImageConverter
     image_transport::ImageTransport it_;
     image_transport::Subscriber image_sub_;
     image_transport::Publisher image_pub_;
-    // Add your bounding box publisher here using the nh_ node handler
+    ros::Publisher x_pub_ = nh_.advertise<std_msgs::Int32>("x_relay_", 60);
 
 public:
     ImageConverter()
@@ -22,8 +22,6 @@ public:
         image_sub_ = it_.subscribe("/jetbot_camera/image_raw", 1,
                                    &ImageConverter::imageCb, this);
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
-
-
     }
 
     ~ImageConverter()
@@ -36,7 +34,7 @@ public:
         cv_bridge::CvImagePtr cv_ptr;
         try
         {
-            cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+            cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::RGB8);
         }
         catch (cv_bridge::Exception& e)
         {
@@ -44,14 +42,66 @@ public:
             return;
         }
 
-        // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
+        // Separate and detect contours
+        cv::Mat hsv;
+        cv::cvtColor(cv_ptr->image, hsv, CV_BGR2HSV);
 
-        // Draw an example circle on the video stream
-        if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-            cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
+        std::vector<cv::Mat> channels;
+        cv::split(hsv, channels);
 
-        // YOUR CODE ABOVE
+        cv::Mat H = channels[0];
 
+        cv::Mat shiftedH = H.clone();
+        int shift = 25;
+        for(int j=0; j<shiftedH.rows; ++j)
+        {
+            for(int i=0; i<shiftedH.cols; ++i)
+            {
+                shiftedH.at<unsigned char>(j,i) = (shiftedH.at<unsigned char>(j,i) + shift)%180;
+            }
+        }
+
+        cv::Mat cannyH;
+        cv::Canny(shiftedH, cannyH, 100, 50);
+
+        std::vector<std::vector<cv::Point> > contoursH;
+        std::vector<cv::Vec4i> hierarchyH;
+        cv::findContours(cannyH, contoursH, hierarchyH, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE);
+
+        // Detect the largest contour and draw
+        int x, largest_contour_index;
+        double largest_area = 0;
+        for( int i = 0; i < contoursH.size(); i++ )
+        {
+            double area = contourArea(contoursH[i], false);
+            if (area < 20) continue;
+
+            if (area > largest_area) 
+            {
+                largest_area = area;
+                largest_contour_index = i;
+            }
+        }
+
+        // Needs atleast one contour to draw (avoids crash)
+        if (contoursH.size())  
+        {
+            // Bounding Box
+            cv::Rect bounding_rect = cv::boundingRect(contoursH[largest_contour_index]);
+            cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,255,0), 1, 8, 0);
+
+            // Centre x-position of bounding box
+            x = bounding_rect.x + bounding_rect.width/2;
+        }
+        else
+        {
+            x = -1;
+        }
+
+        // Publish x-position
+        std_msgs::Int32 x_msg;
+        x_msg.data = x;
+        x_pub_.publish(x_msg);
 
         // Output modified video stream
         image_pub_.publish(cv_ptr->toImageMsg());

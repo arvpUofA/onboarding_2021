@@ -15,6 +15,7 @@ def on_cmd_str(msg):
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
 		twist.angular.z = -0.05
+
 	elif msg.data.lower() == "left":
 		twist.linear.x = 0.0
 		twist.linear.y = 0.0
@@ -22,6 +23,7 @@ def on_cmd_str(msg):
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
 		twist.angular.z = 0.05
+
 	elif msg.data.lower() == "forward":
 		twist.linear.x = 0.05
 		twist.linear.y = 0.0
@@ -29,6 +31,23 @@ def on_cmd_str(msg):
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
 		twist.angular.z = 0.0
+
+	elif msg.data.lower() == "backward":
+		twist.linear.x = -0.05
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
+
+	elif msg.data.lower() == "stop":
+		twist.linear.x = 0.0
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
+
 	else:
 		pass
 	pub.publish(twist)
@@ -42,3 +61,5 @@ if __name__ == '__main__':
 
 	# start running
 	rospy.spin()
+
+# rostopic pub /jetbot_motors/cmd_str std_msgs/String --once "<string_command>”

@@ -1,0 +1,2 @@
+jetbot_gazebo:jetbot_ros:vision
+-DCATKIN_DEVEL_PREFIX=/home/jvon/Desktop/onboarding_2021/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jvon/Desktop/onboarding_2021/catkin_ws/install -G Unix Makefiles
