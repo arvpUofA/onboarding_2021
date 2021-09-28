@@ -42,9 +42,7 @@ public:
             return;
         }
 
-        // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
-
-        // Separate contours
+        // Separate and detect contours
         cv::Mat hsv;
         cv::cvtColor(cv_ptr->image, hsv, CV_BGR2HSV);
 
@@ -56,11 +54,13 @@ public:
         cv::Mat shiftedH = H.clone();
         int shift = 25;
         for(int j=0; j<shiftedH.rows; ++j)
+        {
             for(int i=0; i<shiftedH.cols; ++i)
             {
                 shiftedH.at<unsigned char>(j,i) = (shiftedH.at<unsigned char>(j,i) + shift)%180;
             }
-            
+        }
+
         cv::Mat cannyH;
         cv::Canny(shiftedH, cannyH, 100, 50);
 
@@ -68,13 +68,14 @@ public:
         std::vector<cv::Vec4i> hierarchyH;
         cv::findContours(cannyH, contoursH, hierarchyH, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE);
 
-        // Detect the largest contour:
-        int largest_contour_index;
-        double largest_area;
-        double area;
+        // Detect the largest contour and draw
+        int x, largest_contour_index;
+        double largest_area = 0;
         for( int i = 0; i < contoursH.size(); i++ )
         {
-            area = contourArea(contoursH[i], false);
+            double area = contourArea(contoursH[i], false);
+            if (area < 20) continue;
+
             if (area > largest_area) 
             {
                 largest_area = area;
@@ -82,7 +83,6 @@ public:
             }
         }
 
-        int x;
         // Needs atleast one contour to draw (avoids crash)
         if (contoursH.size())  
         {
@@ -90,20 +90,18 @@ public:
             cv::Rect bounding_rect = cv::boundingRect(contoursH[largest_contour_index]);
             cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,255,0), 1, 8, 0);
 
-            // Centre position of bounding box
+            // Centre x-position of bounding box
             x = bounding_rect.x + bounding_rect.width/2;
         }
         else
         {
-            x = -1; // Contour not found
+            x = -1;
         }
 
         // Publish x-position
         std_msgs::Int32 x_msg;
         x_msg.data = x;
         x_pub_.publish(x_msg);
-
-        // YOUR CODE ABOVE //
 
         // Output modified video stream
         image_pub_.publish(cv_ptr->toImageMsg());

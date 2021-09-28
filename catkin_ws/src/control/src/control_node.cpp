@@ -14,13 +14,8 @@ void motorCallback(const std_msgs::Int32::ConstPtr& msg) {
     int mid = 640;
     int tolerance = 20;
 
-    // Move right until a contour is found
-    if (x == -1)
-    {
-        motorString.data = "right";
-    }
     // Move forward if within tolerance range of the middle
-    else if (x >= mid - tolerance && x <= mid + tolerance)
+    if (x >= mid - tolerance && x <= mid + tolerance)
     {
         motorString.data = "forward";
     }
@@ -56,3 +51,5 @@ int main(int argc, char** argv)
         rate.sleep();
     }
 }
+
+// roslaunch control motors_run.launch
