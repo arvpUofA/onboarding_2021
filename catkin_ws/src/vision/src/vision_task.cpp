@@ -46,10 +46,53 @@ public:
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
 
-        // Draw an example circle on the video stream
-        if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-            cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
+//        // Draw an example circle on the video stream
+//        if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
+//            cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
 
+        cv::Mat hsv;
+        cv::cvtColor(cv_ptr->image,hsv,CV_BGR2HSV);
+
+        std::vector<cv::Mat> channels;
+        cv::split(hsv, channels);
+
+        cv::Mat H = channels[0];
+
+        cv::Mat shiftedH = H.clone();
+        int shift = 25;
+        for(int j=0; j<shiftedH.rows; ++j)
+            for(int i=0; i<shiftedH.cols; ++i)
+            {
+                shiftedH.at<unsigned char>(j,i) = (shiftedH.at<unsigned char>(j,i) + shift)%180;
+            }
+        cv::Mat cannyH;
+        cv::Canny(shiftedH, cannyH, 100, 50);
+        
+        // extract contours of the canny image:
+        std::vector<std::vector<cv::Point> > contoursH;
+        std::vector<cv::Vec4i> hierarchyH;
+        cv::findContours(cannyH,contoursH, hierarchyH, CV_RETR_TREE , CV_CHAIN_APPROX_SIMPLE);
+
+        // draw the contours to a copy of the input image:
+        int largest_contour_index;
+        double largest_area = 0;
+        cv::Mat outputH = cv_ptr->image.clone();
+        for( int i = 0; i< contoursH.size(); i++ )
+         {
+            cv::drawContours( outputH, contoursH, i, cv::Scalar(0,0,255), 2, 8, hierarchyH, 0);
+            double area = contourArea(contoursH[i], false);
+            if(area < 5) continue;
+            if(area > largest_area) {
+                largest_area = area;
+                largest_contour_index = i;
+            }
+
+         }
+
+        if(contoursH.size()) {
+            cv::Rect bounding_rect = boundingRect(contoursH[largest_contour_index]);
+            cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,0,255),1, 8,0);
+        }
         // YOUR CODE ABOVE
 
 
