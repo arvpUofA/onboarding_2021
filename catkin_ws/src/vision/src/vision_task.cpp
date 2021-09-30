@@ -19,9 +19,9 @@ public:
             : it_(nh_)
     {
         // Subscribe to input video feed and publish output video feed
-        image_sub_ = it_.subscribe("/jetbot_camera/image_raw", 1,
+        image_sub_ = it_.subscribe(/jetbot_camera/image_raw, 1,
                                    &ImageConverter::imageCb, this);
-        image_pub_ = it_.advertise("/image_converter/output_video", 1);
+        image_pub_ = it_.advertise(/image_converter/output_video, 1);
 
 
     }
@@ -40,12 +40,11 @@ public:
         }
         catch (cv_bridge::Exception& e)
         {
-            ROS_ERROR("cv_bridge exception: %s", e.what());
+            ROS_ERROR(cv_bridge exception: %s, e.what());
             return;
-        }
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
-
+        
         // Draw an example circle on the video stream
         if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
             cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
@@ -60,7 +59,7 @@ public:
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "image_converter");
+    ros::init(argc, argv, image_converter);
     ImageConverter ic;
     ros::spin();
     return 0;
