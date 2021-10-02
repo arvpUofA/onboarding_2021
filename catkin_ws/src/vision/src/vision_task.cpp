@@ -45,11 +45,47 @@ public:
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
 
+                // Draw an example circle on the video stream
 
-        // Draw an example circle on the video stream
-        if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-            cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
+        // Converting the image into an HSV version
+        cv::Mat hsv;
+        cv::cvtColor(cv_ptr->image, hsv, CV_BGR2HSV);
 
+        //std::vector<cv::Mat> channels;
+        std::vector<cv::Mat> channels;
+        cv::split(hsv, channels);
+
+        // Separating the Hue, saturation, and value channels
+        cv::Mat H = channels[0];
+        cv::Mat S = channels[1];
+        cv::Mat V = channels[2];
+
+        // Creating the canny image from the hue 
+        cv::Mat cannyH;
+        cv::Canny(H, cannyH, 0, 100);
+
+        // Extracting the contours from the canny image
+        std::vector<std::vector<cv::Point> > contoursH;
+        std::vector<cv::Vec4i> heirarchyH;
+        cv::findContours(cannyH, contoursH, heirarchyH, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
+
+        //Finding the largest contour
+        int largest_contour_index;
+        double largest_area;
+        for (int i = 0; i < contoursH.size(); i++) {
+
+            double area = contourArea(contoursH[i], false);
+            if (!largest_area || (area > largest_area)) {
+                largest_area = area;
+                largest_contour_index = i;
+            }
+        }
+
+        // Drawing the bounding box
+        cv::Rect bounding_rect = boundingRect(contoursH[largest_contour_index]);
+        rectangle(cv_ptr->image, bounding_rect, cv::Scalar(0, 255, 0), 1, 8, 0);
+
+        
         // YOUR CODE ABOVE
 
 
