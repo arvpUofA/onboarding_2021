@@ -3,6 +3,8 @@ import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
+# topic is : /jetbot_motors/cmd_str
+# type is : std_msgs/String
 pub = rospy.Publisher('diffdrive/cmd_vel', Twist, queue_size=1)
 twist = Twist()
 
@@ -24,6 +26,20 @@ def on_cmd_str(msg):
 		twist.angular.z = 0.05
 	elif msg.data.lower() == "forward":
 		twist.linear.x = 0.05
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
+	elif msg.data.lower() == "backward":
+		twist.linear.x = -0.05
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
+	elif msg.data.lower() == "stop":
+		twist.linear.x = 0.0
 		twist.linear.y = 0.0
 		twist.linear.z = 0.0
 		twist.angular.y = 0.0

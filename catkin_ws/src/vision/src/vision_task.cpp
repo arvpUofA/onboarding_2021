@@ -4,6 +4,8 @@
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <std_msgs/Int32.h>
+
 
 
 class ImageConverter
@@ -13,6 +15,8 @@ class ImageConverter
     image_transport::Subscriber image_sub_;
     image_transport::Publisher image_pub_;
     // Add your bounding box publisher here using the nh_ node handler
+    ros::Publisher x_val_pub_ = nh_.advertise<std_msgs::Int32>("x_val", 60);
+    
 
 public:
     ImageConverter()
@@ -43,12 +47,6 @@ public:
             ROS_ERROR("cv_bridge exception: %s", e.what());
             return;
         }
-
-        // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
-
-//        // Draw an example circle on the video stream
-//        if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-//            cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
 
         cv::Mat hsv;
         cv::cvtColor(cv_ptr->image,hsv,CV_BGR2HSV);
@@ -89,14 +87,18 @@ public:
 
          }
 
+        int centerX;
         if(contoursH.size()) {
             cv::Rect bounding_rect = boundingRect(contoursH[largest_contour_index]);
-            cv::rectangle(cv_ptr->image, bounding_rect, CV_RGB(0,0,255),1, 8,0);
+            cv::rectangle(cv_ptr->image, bounding_rect, cv::Scalar(0,255,0),1, 8,0);
+            centerX = bounding_rect.x + bounding_rect.width / 2;
         }
-        // YOUR CODE ABOVE
 
-
+        std_msgs::Int32 xmsg;
+        xmsg.data = centerX;
+        x_val_pub_.publish(xmsg);
         // Output modified video stream
+
         image_pub_.publish(cv_ptr->toImageMsg());
     }
 };
