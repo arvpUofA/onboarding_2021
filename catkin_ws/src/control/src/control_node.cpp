@@ -12,7 +12,9 @@ std_msgs::String motorString;
 void moveCallback(const std_msgs::Int32::ConstPtr &x_msg) {
     int x = x_msg->data;
 
-    if (x < 620) {
+    if (x == -1) {
+        motorString.data = "stop";
+    } else if (x < 620) {
         motorString.data = "left";
     } else if (x > 660) {
         motorString.data = "right";

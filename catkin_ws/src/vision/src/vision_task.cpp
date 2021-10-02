@@ -60,9 +60,9 @@ class ImageConverter {
         std::vector<cv::Vec4i> hierarchyH;
         cv::findContours(cannyH, contoursH, hierarchyH, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE);
 
-        cv::Mat outputH = cv_ptr->image.clone();
+        // cv::Mat outputH = cv_ptr->image.clone();
 
-        int largest_contour_index;
+        int largest_contour_index = -1;
         double largest_area = 0.0;
 
         for (int i = 0; i < contoursH.size(); i++) {
@@ -76,7 +76,7 @@ class ImageConverter {
 
         int x;
 
-        if (contoursH.size()) {
+        if (contoursH.size() > 0 && largest_contour_index >= 0) {
             auto bounding_rect = boundingRect(contoursH[largest_contour_index]);
             rectangle(cv_ptr->image, bounding_rect, cv::Scalar(0, 255, 0), 1, 8, 0);
 
