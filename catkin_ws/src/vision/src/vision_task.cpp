@@ -89,7 +89,7 @@ public:
         cv::Rect bounding_rect = boundingRect(contoursH[largest_contour_index]);
         rectangle(cv_ptr->image, bounding_rect, cv::Scalar(0, 255, 0), 1, 8, 0);
         
-        message.data = bounding_rect.x + ((bounding_rect.width - bounding_rect.x)/2);
+        message.data = bounding_rect.x + ((bounding_rect.width)/2);
         bounding_box_.publish(message);
         // YOUR CODE ABOVE
 

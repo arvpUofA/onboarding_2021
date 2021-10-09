@@ -12,18 +12,17 @@ std_msgs::String motorString;
 void boxCallback(const std_msgs::Int32::ConstPtr& msg) {
 
     int placement = msg->data;
-    if (placement <= 640) {
-        motorString.data = "right";
-    }
-    else if (placement > 640) {
-        motorString.data = "right";
-    }
-    else if (placement == 640) {
+    if (placement > 630 && placement < 650) {
         motorString.data = "forward";
     }
-    else {
-        motorString.data = "stop";
+    else if (placement <= 630) {
+        motorString.data = "left";
     }
+    else if (placement >= 650) {
+        motorString.data = "right";
+    }
+
+
     motor_pub.publish(motorString);
 
 }
