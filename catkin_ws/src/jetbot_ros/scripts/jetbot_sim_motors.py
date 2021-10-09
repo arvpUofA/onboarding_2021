@@ -29,6 +29,13 @@ def on_cmd_str(msg):
 		twist.angular.y = 0.0
 		twist.angular.y = 0.0
 		twist.angular.z = 0.0
+	elif msg.data.lower() == "stop":
+		twist.linear.x = 0.0
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
 	else:
 		pass
 	pub.publish(twist)

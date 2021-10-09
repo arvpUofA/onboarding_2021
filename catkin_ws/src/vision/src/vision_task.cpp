@@ -4,7 +4,7 @@
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-
+#include <std_msgs/Int32.h>
 
 class ImageConverter
 {
@@ -13,6 +13,8 @@ class ImageConverter
     image_transport::Subscriber image_sub_;
     image_transport::Publisher image_pub_;
     // Add your bounding box publisher here using the nh_ node handler
+    ros::Publisher bounding_box_ = nh_.advertise<std_msgs::Int32>("/bounding_box", 1000);
+    std_msgs::Int32 message;
 
 public:
     ImageConverter()
@@ -22,7 +24,8 @@ public:
         image_sub_ = it_.subscribe("/jetbot_camera/image_raw", 1,
                                    &ImageConverter::imageCb, this);
         image_pub_ = it_.advertise("/image_converter/output_video", 1);
-
+    
+        
 
     }
 
@@ -85,8 +88,9 @@ public:
         // Drawing the bounding box
         cv::Rect bounding_rect = boundingRect(contoursH[largest_contour_index]);
         rectangle(cv_ptr->image, bounding_rect, cv::Scalar(0, 255, 0), 1, 8, 0);
-
         
+        message.data = bounding_rect.x + ((bounding_rect.width - bounding_rect.x)/2);
+        bounding_box_.publish(message);
         // YOUR CODE ABOVE
 
 
