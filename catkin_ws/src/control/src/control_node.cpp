@@ -21,6 +21,9 @@ void boxCallback(const std_msgs::Int32::ConstPtr& msg) {
     else if (placement >= 650) {
         motorString.data = "right";
     }
+    else {
+        motorString.data = "right";
+    }
 
 
     motor_pub.publish(motorString);
