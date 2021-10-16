@@ -1,44 +1,43 @@
 #!/usr/bin/env python3
 import rospy
-import time
-import rosservice
-import requests
-import os
 from std_msgs.msg import String
+from geometry_msgs.msg import Twist
 
+pub = rospy.Publisher('diffdrive/cmd_vel', Twist, queue_size=1)
+twist = Twist()
 
 # simple string commands (left/right/forward/backward/stop)
 def on_cmd_str(msg):
 	if msg.data.lower() == "right":
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, duration: 1000000000 }'")
-		time.sleep(5)
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, duration: 1000000000 }'")
-		time.sleep(5)
-		print('done turning right')
-
+		twist.linear.x = 0.0
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = -0.05
 	elif msg.data.lower() == "left":
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		time.sleep(5)
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -5, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		time.sleep(5)
-		print('done turning left')
-
+		twist.linear.x = 0.0
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.05
 	elif msg.data.lower() == "forward":
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: 10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		time.sleep(5)
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::left_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		os.system("rosservice call /gazebo/apply_body_wrench '{body_name: 'JetBot::right_wheel' , wrench: { force: { x: -10, y: 0 , z: 0 } }, start_time: 10000000000, duration: 1000000000 }'")
-		time.sleep(5)
-		print('done going forward')
+		twist.linear.x = 0.05
+		twist.linear.y = 0.0
+		twist.linear.z = 0.0
+		twist.angular.y = 0.0
+		twist.angular.y = 0.0
+		twist.angular.z = 0.0
 	else:
 		pass
+	pub.publish(twist)
 
 # initialization
 if __name__ == '__main__':
 
 	# setup ros node
-	rospy.init_node('jetbot_gazebo_motors')
+	rospy.init_node('jetbot_motors')
 	rospy.Subscriber('~cmd_str', String, on_cmd_str)
 
 	# start running
