@@ -46,10 +46,6 @@ public:
 
         // DElETE CODE BELOW AND PUT YOUR OWN CODE FOR DRAWING BOUNDING BOXES
 
-        // Draw an example circle on the video stream
-        //if (cv_ptr->image.rows > 60 && cv_ptr->image.cols > 60)
-        //    cv::circle(cv_ptr->image, cv::Point(50, 50), 10, CV_RGB(255,0,0));
-
         // creates an image array
         cv::Mat hsv;
         cv::cvtColor(cv_ptr->image, hsv, CV_BGR2HSV);
@@ -101,8 +97,6 @@ public:
         cv::Point center;
         center.x = x + bounding_rect.width/2;
         center.y = y + bounding_rect.height/2;
-        
-        //cv::circle(cv_ptr->image, center, 10, cv::Scalar(0,255,0));
 
         // creates x coordinate data and publishes it to center_point topic
         std_msgs::Int32 midpoint;
