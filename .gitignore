@@ -35,5 +35,13 @@
 .idea*
 
 # Catkin builds
-*catkin_ws/build/*
-*catkin_ws/devel/*
+*catkin_ws/build*
+*catkin_ws/devel*
+catkin_ws/src/CMakeLists.txt
+
+# Jetbot repository
+catkin_ws/src/jetbot_ros/gazebo/blue_ball/materials/textures/rcs-soccerball.png
+catkin_ws/src/jetbot_ros/gazebo/install_jetbot_model.sh
+catkin_ws/src/jetbot_ros/gazebo/red_ball/materials/textures/rcs-soccerball.png
+catkin_ws/src/jetbot_ros/scripts/jetbot_motors.py
+catkin_ws/src/jetbot_ros/scripts/jetbot_oled.py
