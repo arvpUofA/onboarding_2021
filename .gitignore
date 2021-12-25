@@ -33,3 +33,7 @@
 
 # Idea
 .idea*
+
+# Catkin builds
+*catkin_ws/build/*
+*catkin_ws/build/*
