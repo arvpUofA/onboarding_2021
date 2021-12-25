@@ -35,5 +35,10 @@
 .idea*
 
 # Catkin builds
-*catkin_ws/build/*
-*catkin_ws/devel/*
+*catkin_ws\build/*
+*catkin_ws\devel/*
+*catkin_ws\.catkin_workspace
+*catkin_ws\src\CMakeList.txt
+
+# Jetbot repository
+*catkin_ws\src\jetbot_ros*
